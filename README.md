@@ -26,7 +26,7 @@ To set up the project locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/joshuavantard/siddarth-gupta-test-061224.git
+   git clone 
    cd script-monitor-app
 
 2.	Install dependencies:
