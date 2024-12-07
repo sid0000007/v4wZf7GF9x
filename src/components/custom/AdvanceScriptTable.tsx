@@ -216,7 +216,7 @@ export function AdvanceScriptTable() {
                         }
                         disabled={
                           actionInProgress === instance.id ||
-                          instance.state === "pending"
+                          instance.state === "pending" || instance.state === "stopping"
                         }
                       >
                         {actionInProgress === instance.id ? (
