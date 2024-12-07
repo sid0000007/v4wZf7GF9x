@@ -33,3 +33,34 @@ export const controlEC2Instance = async (instanceId: string, action: 'start' | '
     throw error;
   }
 };
+
+export const controlec2instance_advnace = async (
+  instanceId: string, 
+  action: 'start' | 'stop',
+  scriptPath?: string
+) => {
+  try {
+    const response = await fetch('/api/scriptRunners', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        instanceId, 
+        action,
+        scriptPath 
+      }),
+    });
+
+    console.log(response);
+    
+    if (!response.ok) {
+      throw new Error(`Failed to ${action} EC2 instance and script`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error(`Error ${action}ing EC2 instance and script:`, error);
+    throw error;
+  }
+};

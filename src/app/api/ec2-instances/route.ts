@@ -4,7 +4,7 @@ import { EC2Instance } from '@/types/script-monitor';
 
 const ec2Client = new EC2Client({ 
   region: process.env.NEXT_PUBLIC_AWS_REGION
-});
+}); 
 
 export async function GET() {
   try {
@@ -68,3 +68,4 @@ export async function POST(request: Request) {
     );
   }
 }
+
