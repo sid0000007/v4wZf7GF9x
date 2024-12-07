@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Test Assignment
 
-## Getting Started
+A Clound based VM montior app allows you to enter 
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Before you begin, ensure you have the following environment variables configured in your `.env` file:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Cloudinary API Key:**
+NEXT_PUBLIC_MONITORING_WEBPAGE=
+   - `NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY`: 
+   - `NEXT_PUBLIC_AWS_REGION`: 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Custom**
+   -  `NEXT_PUBLIC_ALLOWED_EC2_INSTANCES`:
+   - `NEXT_PUBLIC_MONITORING_WEBPAGE`: 
+---
 
-## Learn More
+## Installation
 
-To learn more about Next.js, take a look at the following resources:
+To set up the project locally, follow these steps:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone the repository:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```bash
+   git clone https://github.com/joshuavantard/siddarth-gupta-test-061224.git
+   cd script-monitor-app
 
-## Deploy on Vercel
+2.	Install dependencies:
+    
+    ```bash
+    npm i
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Run locally
+   ```bash
+   npm run dev
+4. Go to Browser and access 
+    ```bash
+   localhost:3000
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Project Structure
+  
+## 🛠️ Tech Stack
+
+-   **Frontend**: Next.js
+-   **Styling**: TailwindCSS + [shadcn](https://shadcn.dev/) etc.
+-   **Backend**: TypeScript, Node.js, Websocket
+- **Cloud Solutions**: AWS
+
+   
+
+

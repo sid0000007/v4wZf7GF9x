@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@aws-sdk/client-ec2": "^3.703.0",
+    "@aws-sdk/client-iam": "^3.699.0",
     "@aws-sdk/client-ssm": "^3.699.0",
     "@radix-ui/react-select": "^2.1.2",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-switch": "^1.1.1",
     "@tanstack/react-table": "^8.20.5",
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",

@@ -1,44 +1,53 @@
-import { NextResponse } from 'next/server';
-import { EC2Client, DescribeInstancesCommand, StartInstancesCommand, StopInstancesCommand } from "@aws-sdk/client-ec2";
-import { EC2Instance } from '@/types/script-monitor';
+import { NextResponse } from "next/server";
+import {
+  EC2Client,
+  DescribeInstancesCommand,
+  StartInstancesCommand,
+  StopInstancesCommand,
+} from "@aws-sdk/client-ec2";
 
-const ec2Client = new EC2Client({ 
-  region: process.env.NEXT_PUBLIC_AWS_REGION
-}); 
+const ec2Client = new EC2Client({
+  region: process.env.NEXT_PUBLIC_AWS_REGION,
+});
 
 export async function GET() {
   try {
-    const client = new EC2Client({ 
+    const client = new EC2Client({
       region: process.env.AWS_REGION,
       credentials: {
         accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!
-      }
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
+      },
     });
 
     const command = new DescribeInstancesCommand({});
     const response = await client.send(command);
-    
-    const instances = response.Reservations?.flatMap(reservation => 
-      reservation.Instances?.map(instance => ({
-        id: instance.InstanceId || '',
-        type: instance.InstanceType || '',
-        state: instance.State?.Name || '',
-        publicDns: instance.PublicDnsName || ''
-      })) || []
-    ) || [];
+
+    const instances =
+      response.Reservations?.flatMap(
+        (reservation) =>
+          reservation.Instances?.map((instance) => ({
+            id: instance.InstanceId || "",
+            type: instance.InstanceType || "",
+            state: instance.State?.Name || "",
+            publicDns: instance.PublicDnsName || "",
+          })) || []
+      ) || [];
 
     return NextResponse.json({ instances });
   } catch (error) {
     console.error("Error fetching EC2 instances:", error);
-    return NextResponse.json({ error: "Failed to fetch EC2 instances" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch EC2 instances" },
+      { status: 500 }
+    );
   }
 }
 
 export async function POST(request: Request) {
   try {
     const { instanceId, action } = await request.json();
-    
+
     if (!instanceId || !action) {
       return NextResponse.json(
         { error: "Instance ID and action are required" },
@@ -47,9 +56,9 @@ export async function POST(request: Request) {
     }
 
     let command;
-    if (action === 'start') {
+    if (action === "start") {
       command = new StartInstancesCommand({ InstanceIds: [instanceId] });
-    } else if (action === 'stop') {
+    } else if (action === "stop") {
       command = new StopInstancesCommand({ InstanceIds: [instanceId] });
     } else {
       return NextResponse.json(
@@ -59,7 +68,10 @@ export async function POST(request: Request) {
     }
 
     await ec2Client.send(command);
-    return NextResponse.json({ success: true, message: `Instance ${action} request sent` });
+    return NextResponse.json({
+      success: true,
+      message: `Instance ${action} request sent`,
+    });
   } catch (error) {
     console.error(`Error ing EC2 instance:`, error);
     return NextResponse.json(
@@ -68,4 +80,3 @@ export async function POST(request: Request) {
     );
   }
 }
-

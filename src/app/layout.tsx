@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Virtual Script Monitor",
-  description: "haha",
+  description: "VM Script Monitor",
 };
 
 export default function RootLayout({
@@ -13,7 +13,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="shortcut icon" href="/apple.png" />
       <body>{children}</body>
     </html>
   );

@@ -1,3 +1,7 @@
+
+//used for hitting all the endpoints and getting the data from them.
+
+
 export const getAvailableEC2Instances = async () => {
   try {
     const response = await fetch('/api/ec2-instances');
@@ -11,7 +15,6 @@ export const getAvailableEC2Instances = async () => {
     return [];
   }
 };
-
 
 export const controlEC2Instance = async (instanceId: string, action: 'start' | 'stop') => {
   try {
@@ -61,6 +64,31 @@ export const controlec2instance_advnace = async (
     return await response.json();
   } catch (error) {
     console.error(`Error ${action}ing EC2 instance and script:`, error);
+    throw error;
+  }
+};
+
+export const controlScript = async (instanceId: string, action: 'start' | 'stop', scriptPath: string) => {
+  try {
+    const response = await fetch('/api/scriptRunners', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        instanceId, 
+        action,
+        scriptPath 
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to ${action} script`);
+    }
+    
+    return await response.json();
+  } catch (error) {
+    console.error(`Error ${action}ing script:`, error);
     throw error;
   }
 };

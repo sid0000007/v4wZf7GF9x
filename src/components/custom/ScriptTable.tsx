@@ -1,3 +1,5 @@
+// Not used in the final version
+
 'use client';
 import { useEffect, useState } from 'react';
 import { getAvailableEC2Instances, controlEC2Instance } from '@/lib/aws-config';
@@ -52,6 +54,7 @@ export function ScriptTable() {
 
   useEffect(() => {
     fetchInstances();
+    
   }, []);
 
   const handleInstanceAction = async (instanceId: string, action: 'start' | 'stop') => {
