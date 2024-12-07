@@ -42,6 +42,9 @@ To set up the project locally, follow these steps:
 
 
 ## Project Structure
+
+<img width="193" alt="Screenshot 2024-12-07 at 10 41 43 PM" src="https://github.com/user-attachments/assets/ef95a7a1-e55e-4937-9cbc-c9547547942d">
+
   
 ## 🛠️ Tech Stack
 
